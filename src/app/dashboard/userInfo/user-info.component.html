@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>Customer Info</h2>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Balance</th>
+        <th>Transactions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="openModal(transactionsModal)">
+        <td>
+          {{userInfo.name}}
+        </td>
+        <td>
+          {{userInfo.surname}}
+        </td>
+        <td>
+          {{userInfo.balance}}
+        </td>
+        <td>
+          {{userInfo.transactions.length}}
+         
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #transactionsModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Transactions</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+     
+      <table *ngIf="userInfo && userInfo.transactions" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <!-- <th>ID</th> -->
+            <th>Transaction Amount</th>
+            <th>Old Balance</th>
+            <th>New Balance</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of userInfo.transactions">
+            <!-- <td>
+              {{t.id}}
+            </td> -->
+            <td>
+              {{t.transactionAmount}}
+            </td>
+            <td>
+              {{t.oldBalance}}
+            </td>
+            <td>
+              {{t.newBalance}}
+            </td>
+            <td>
+              {{t.createdDate | date : 'MMM d, y, h:mm:ss a'}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>

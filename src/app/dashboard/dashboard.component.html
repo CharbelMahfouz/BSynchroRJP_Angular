@@ -1,0 +1,51 @@
+<app-shared-header></app-shared-header>
+<div class="row">
+ 
+  <div class="col-md-10 mrgtop5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mrgnbtm">
+            <h2>Open Account</h2>
+            <form [formGroup]="openAccountForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="exampleInputEmail1">Customer ID</label>
+                  <input type="text" class="form-control" formControlName="userID" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter customer ID">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="exampleInputPassword1">Initial Credit</label>
+                  <input type="text" class="form-control" formControlName="initialCredit" id="exampleInputPassword1" placeholder="enter initial credit">
+                </div>
+              </div>
+              
+              <button type="submit" [disabled]="!openAccountForm.valid" class="btn btn-primary">Create</button>
+            </form>
+          </div>
+          <div class="col-md-6 mrgnbtm">
+            <h2>Get Customer Details</h2>
+            <form [formGroup]="customerDetailsForm" (ngSubmit)="getCustomerDetailsSubmit()">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="exampleInputEmail1">Customer ID</label>
+                  <input type="text" class="form-control" formControlName="userID" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter customer ID">
+                </div>
+              
+              </div>
+              
+              <button type="submit" [disabled]="!customerDetailsForm.valid" class="btn btn-primary">Get</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="mrgnbtm">
+        <app-user-info
+          *ngIf="userInfo"
+          [userInfo]="userInfo"
+         
+          >
+        </app-user-info>
+      </div>
+  </div>
+</div>
+
